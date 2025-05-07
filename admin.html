@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>TrustShield Admin</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <script>
+    const password = prompt("Podaj hasło administratora:");
+    if (password !== "TrustAdmin123") {
+      document.body.innerHTML = "Brak dostępu.";
+      throw new Error("Nieautoryzowany dostęp");
+    }
+  </script>
+  <h1>Panel Administratora</h1>
+  <p>Tu znajdziesz zgłoszenia oczekujące na akceptację.</p>
+  <div id="pendingReports">
+    <p>Brak danych. (Statyczna wersja demonstracyjna)</p>
+  </div>
+</body>
+</html>
