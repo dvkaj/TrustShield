@@ -1,148 +1,150 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TrustShield</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TrustShield - Bezpieczna Przestrzeń Online</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
   <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+      scroll-behavior: smooth;
+    }
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #0d1117;
-      color: #c9d1d9;
       margin: 0;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      background: #0a0a0a;
+      color: #f4f4f4;
     }
     header {
-      background: #161b22;
-      width: 100%;
-      padding: 20px;
-      text-align: center;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      background: #1a1a2e;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
     }
-    h1 {
+    header h1 {
       margin: 0;
+      color: #00bcd4;
+      font-weight: 600;
     }
-    .container {
-      width: 90%;
-      max-width: 800px;
-      margin: 20px auto;
-      background: #161b22;
+    nav a {
+      color: #f4f4f4;
+      margin-left: 1rem;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+    nav a:hover {
+      color: #00bcd4;
+    }
+    section {
+      padding: 4rem 2rem;
+      max-width: 960px;
+      margin: auto;
+    }
+    .button {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      background: #00bcd4;
+      color: #fff;
+      border-radius: 8px;
+      text-decoration: none;
+      margin-top: 1rem;
+      transition: background 0.3s;
+    }
+    .button:hover {
+      background: #0097a7;
+    }
+    .card {
+      background: #1e1e2f;
+      padding: 2rem;
       border-radius: 12px;
-      padding: 20px;
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-      animation: fadeIn 1s ease-in;
+      box-shadow: 0 0 12px rgba(0,188,212,0.2);
+      margin-bottom: 2rem;
+      animation: fadeIn 1s ease-in-out;
+    }
+    .icon-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      color: #00bcd4;
+    }
+    .icon-link:hover {
+      text-decoration: underline;
+    }
+    footer {
+      background: #1a1a2e;
+      text-align: center;
+      padding: 2rem;
+      color: #888;
     }
     @keyframes fadeIn {
       from {opacity: 0; transform: translateY(20px);}
       to {opacity: 1; transform: translateY(0);}
-    }
-    input, textarea, button {
-      width: 100%;
-      margin-top: 10px;
-      padding: 10px;
-      border-radius: 8px;
-      border: none;
-      font-size: 1rem;
-    }
-    button {
-      background-color: #238636;
-      color: white;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-    button:hover {
-      background-color: #2ea043;
-    }
-    .report {
-      background: #21262d;
-      padding: 15px;
-      border-radius: 8px;
-      margin-top: 10px;
-    }
-    .admin-section {
-      display: none;
-      margin-top: 30px;
     }
   </style>
 </head>
 <body>
   <header>
     <h1>TrustShield</h1>
-    <p>Twoje centrum bezpieczeństwa społeczności</p>
+    <nav>
+      <a href="#o-nas">O nas</a>
+      <a href="#czarna-lista">Czarna lista</a>
+      <a href="#zgloszenie">Zgłoszenie</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
   </header>
 
-  <div class="container">
-    <h2>Zgłoś użytkownika</h2>
-    <input type="text" id="nick" placeholder="Nick lub ID">
-    <textarea id="reason" placeholder="Powód zgłoszenia"></textarea>
-    <button onclick="submitReport()">Wyślij zgłoszenie</button>
-
-    <h2 style="margin-top: 30px">Logowanie administratora</h2>
-    <input type="password" id="adminPass" placeholder="Hasło administratora">
-    <button onclick="loginAdmin()">Zaloguj się</button>
-
-    <div class="admin-section" id="adminPanel">
-      <h2>Zgłoszenia oczekujące</h2>
-      <div id="pendingReports"></div>
+  <section id="o-nas">
+    <div class="card">
+      <h2>O TrustShield</h2>
+      <p>TrustShield to system ochrony społeczności online, mający na celu wykrywanie i zgłaszanie potencjalnie niebezpiecznych zachowań w Internecie. Dbamy o Twoje bezpieczeństwo w przestrzeni cyfrowej.</p>
+      <a class="button" href="#zgloszenie">Zgłoś problem</a>
     </div>
-  </div>
+  </section>
 
-  <script>
-    const ADMIN_PASSWORD = "trustadmin123";
-    let reports = JSON.parse(localStorage.getItem("trustReports") || "[]");
+  <section id="czarna-lista">
+    <div class="card">
+      <h2>Czarna Lista</h2>
+      <ul id="blacklist">
+        <li>Użytkownik123 - Oszustwo na serwerze XYZ</li>
+        <li>FakeBot - Rozsyłanie szkodliwych linków</li>
+      </ul>
+    </div>
+  </section>
 
-    function submitReport() {
-      const nick = document.getElementById("nick").value.trim();
-      const reason = document.getElementById("reason").value.trim();
-      if (nick && reason) {
-        reports.push({ nick, reason, approved: false });
-        localStorage.setItem("trustReports", JSON.stringify(reports));
-        alert("Zgłoszenie wysłane!");
-        document.getElementById("nick").value = "";
-        document.getElementById("reason").value = "";
-      }
-    }
+  <section id="zgloszenie">
+    <div class="card">
+      <h2>Zgłoś użytkownika</h2>
+      <form action="#" method="post">
+        <label>Nick/ID:
+          <input type="text" name="nick" required style="width: 100%; padding: 0.5rem; margin-top: 0.5rem;">
+        </label><br><br>
+        <label>Powód zgłoszenia:
+          <textarea name="reason" rows="4" required style="width: 100%; padding: 0.5rem;"></textarea>
+        </label><br><br>
+        <button type="submit" class="button">Wyślij zgłoszenie</button>
+      </form>
+    </div>
+  </section>
 
-    function loginAdmin() {
-      const pass = document.getElementById("adminPass").value;
-      if (pass === ADMIN_PASSWORD) {
-        document.getElementById("adminPanel").style.display = "block";
-        showPendingReports();
-      } else {
-        alert("Błędne hasło!");
-      }
-    }
+  <section id="kontakt">
+    <div class="card">
+      <h2>Kontakt</h2>
+      <p>Masz pytania? Skontaktuj się z zespołem TrustShield:</p>
+      <a class="icon-link" href="https://discord.gg/example" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" alt="Discord" width="24" height="24" />
+        Discord TrustShield
+      </a>
+    </div>
+  </section>
 
-    function showPendingReports() {
-      const container = document.getElementById("pendingReports");
-      container.innerHTML = "";
-      reports.forEach((r, i) => {
-        if (!r.approved) {
-          const div = document.createElement("div");
-          div.className = "report";
-          div.innerHTML = `<strong>${r.nick}</strong><br>${r.reason}<br>
-            <button onclick="approveReport(${i})">Akceptuj</button>
-            <button onclick="rejectReport(${i})">Odrzuć</button>`;
-          container.appendChild(div);
-        }
-      });
-    }
-
-    function approveReport(i) {
-      reports[i].approved = true;
-      localStorage.setItem("trustReports", JSON.stringify(reports));
-      showPendingReports();
-      alert("Zgłoszenie zaakceptowane i dodane na czarną listę");
-    }
-
-    function rejectReport(i) {
-      reports.splice(i, 1);
-      localStorage.setItem("trustReports", JSON.stringify(reports));
-      showPendingReports();
-    }
-  </script>
+  <footer>
+    &copy; 2025 TrustShield. Wszelkie prawa zastrzeżone.
+  </footer>
 </body>
 </html>
